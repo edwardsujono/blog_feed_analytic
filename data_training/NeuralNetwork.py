@@ -37,7 +37,7 @@ class NeuralNetwork:
     def __init__(self, number_feature, number_hidden, number_output, number_layer=1):
 
         self.net = NN(n_feature=number_feature, n_hidden=number_hidden, n_output=number_output, number_layer=number_layer)
-        self.optimizer = torch.optim.SGD(self.net.parameters(), lr=0.05)
+        self.optimizer = torch.optim.SGD(self.net.parameters(), lr=0.01)
         self.loss = torch.nn.MSELoss()
 
     def start_train(self, x, y, test_x, test_y, number_iteration=1000):

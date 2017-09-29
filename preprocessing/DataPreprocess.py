@@ -4,6 +4,7 @@ import datetime
 from matplotlib import style
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 
 
 class DataPreprocess:
@@ -21,6 +22,19 @@ class DataPreprocess:
         self.df_test.columns = range(self.df_test.shape[1])
 
         return
+
+    def combine_test_data(self):
+
+        list_test_data = os.listdir('/Users/edwardsujono/Python_Project/blog_feed_analytic/data')
+
+        list_df = []
+
+        for test_data in list_test_data:
+            if test_data not in ['blogData_train.csv', 'BlogFeedback.zip']:
+                list_df.append(pd.read_csv('/Users/edwardsujono/Python_Project/blog_feed_analytic/data/'+test_data))
+
+        result = pd.concat(list_df)
+        result.to_csv("combine_test.csv")
 
     # based on the analysis
     # [50, 51, 52, 53, 276 ]
