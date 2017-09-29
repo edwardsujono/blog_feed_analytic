@@ -17,9 +17,16 @@ class DataPreprocess:
         # change the index first
         self.df.columns = range(self.df.shape[1])
 
+        self.df[self.df[280] <= 10 & self.df[280] > 0] = 1
+        self.df[self.df[self.df.shape[280] > 10], 280] = 2
+
         # for test data
-        self.df_test = pd.read_csv('/Users/edwardsujono/Python_Project/blog_feed_analytic/data/blogData_test-2012.03.31.01_00.csv')
+        self.df_test = pd.read_csv('/Users/edwardsujono/Python_Project/blog_feed_analytic/data/comine_data.csv')
         self.df_test.columns = range(self.df_test.shape[1])
+
+        self.df_test[0 < self.df_test[280] <= 10, 280] = 1
+        self.df_test[self.df_test[280] > 10, 280] = 2
+
 
         return
 
@@ -73,4 +80,3 @@ class DataPreprocess:
     def apply_log_func(self, df):
         df_return = (np.log(df+1))
         return df_return
-
